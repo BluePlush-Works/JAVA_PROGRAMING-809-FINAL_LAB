@@ -1,0 +1,19 @@
+## Sessão 1 – 18/05/2026
+
+**Funcionalidades implementadas:**
+- Métodos para desenhar todos os inimigos que podem ser encontrados no jogo.
+- Um método para selecionar aleatoriamente um dos inimigos, chamando o método para desenhar esse inimigo.
+- Um método para atribuir um valor vazio a todas as posições possíveis no mapa.
+- Um método para desenhar o mapa, mostrando onde o jogador está localizado.
+
+**Maior dificuldade:**
+1 - Testando o código escrito para garantir que funcionasse. (Devido à minha situação com relação ao meu Portátil.)
+
+**Como resolvi (ou não resolvi):**
+1 - Utilizando o editor de código online disponibilizado pela W3Schools no próprio site.
+
+**Próximo passo planeado:**
+...
+
+**Linhas de código escritas (estimativa):**
+...
