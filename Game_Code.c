@@ -7,6 +7,9 @@ void start_menu();
 void build_map();
 void draw_map();
 void user_choice_map();
+void movement(char Direction);
+void encounter();
+void battle();
 void random_enemy();
 void draw_enemy_cat();
 void draw_enemy_bat();
@@ -14,7 +17,8 @@ void draw_enemy_rat();
 
 //Global Variables
 char Map[12][10];
-int Player_x; int Player_y;
+int Player_x; int Player_y; int Player_HP = 10;
+int enemy;
 
 //Main of the program
 int main() {
@@ -112,29 +116,23 @@ void user_choice_map(){
 					cout << "Cannot go up more.\n";
 					cout << "Booting back up the map...\n";
 				}else{
-					Map[Player_y - 1][Player_x] = 'O';
-					Map[y][x] = ' ';
-					Player_y = y - 1
+					movement('w');
 				}
                 break;
             case 2: //Left
             	if(Player_x == 0){
-					cout << "Cannot go down more.\n";
+					cout << "Cannot go left more.\n";
 					cout << "Booting back up the map...\n";
 				}else{
-					Map[Player_y][Player_x - 1] = 'O';
-					Map[y][x] = ' ';
-					Player_x = x - 1;
+					movement('a');
 				}
                 break;
             case 3: //Right
             	if(Player_x == 9){
-					cout << "Cannot go down more.\n";
+					cout << "Cannot go right more.\n";
 					cout << "Booting back up the map...\n";
 				}else{
-					Map[Player_y][Player_x + 1] = 'O';
-					Map[y][x] = ' ';
-					Player_x = x + 1;
+					movement('d');
 				}
                 break;
             case 4: //Down
@@ -142,15 +140,82 @@ void user_choice_map(){
 					cout << "Cannot go down more.\n";
 					cout << "Booting back up the map...\n";
 				}else{
-					Map[Player_y + 1][Player_x] = 'O';
-					Map[y][x] = ' ';
-					Player_y = y + 1;
+					movement('s');
 				}
                 break;
             default:
             	cout << "Error. Invalid Choice.\n";
                 cout << "Booting back up the map...\n";
         }
+}
+
+//Player Movement
+void movement(char Direction){
+	int x = Player_x; int y = Player_y;
+    
+    // Random Number Generator
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0, 9);
+    int rng = distrib(gen);
+	
+	if(rng == 9){
+    	cout << "\nRandom Encounter!";
+        cout << "\nRandom Encounter!";
+        cout << "\nRandom Encounter!";
+    }
+    
+    if(Direction == 'w'){
+    	Map[Player_y - 1][Player_x] = 'O';
+		Map[y][x] = ' ';
+		Player_y = y - 1;
+    }
+    if(Direction == 'a'){
+    	Map[Player_y][Player_x - 1] = 'O';
+		Map[y][x] = ' ';
+		Player_x = x - 1;
+    }
+    if(Direction == 'd'){
+    	Map[Player_y][Player_x + 1] = 'O';
+		Map[y][x] = ' ';
+		Player_x = x + 1;
+    }
+    if(Direction == 's'){
+    	Map[Player_y + 1][Player_x] = 'O';
+		Map[y][x] = ' ';
+		Player_y = y + 1;
+    }
+}
+
+//Random Encounter Manager
+void encounter(){
+	bool choice = false;
+    int option;
+	random_enemy();
+    cout << "\nAn enemy has appeared!\n";
+    while(choice == false){
+      cout << "\nWhat would you like to do?\n";
+      cout << "1 - Fight\n";
+      cout << "2 - Run\n";
+
+      cout << "Option: ";
+      cin >> option;
+
+      switch(option){
+          case 1: //fight
+              battle();
+              choice = true;
+              break;
+          case 2: //run
+              cout << "\nYou ran away!\n";
+              choice = true;
+              break;
+          default:
+              cout << "Error. Invalid Number Detected.\n";
+              cout << "Restarting...\n";
+              break;
+      }
+   }
 }
 
 //Randomise the Enemy Encountered
@@ -163,12 +228,20 @@ void random_enemy() {
     int rng = distrib(gen);
 	
 	if(rng == 0){
+		enemy = 0;
 		draw_enemy_cat();
 	}else if(rng == 1){
+		enemy = 1;
 		draw_enemy_bat();
 	}else{
+		enemy = 2;
 		draw_enemy_rat();
 	}
+}
+
+//Battle Manager
+void battle(){
+	cout << "Battle start!";
 }
 
 //Enemy "Art"
