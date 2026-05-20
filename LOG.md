@@ -24,3 +24,26 @@
 
 **Linhas de código escritas (estimativa):**
 Entre 85-100 linhas escritas
+
+---------------------------------------------------------------------------------------------------------------------------
+
+## Sessão 2 – 20/05/2026
+
+**Funcionalidades implementadas:**
+- Método para fazer o personagem do jogador se mover;
+- No método de movimentação, adicionado um RNG para iniciar um encontro aleatório;
+- Início do método de batalha;
+- Variável para saber qual inimigo o jogador está enfrentando;
+
+**Maior dificuldade:**
+1 - Detectar se o jogador estava nas bordas do mapa.
+
+**Como resolvi (ou não resolvi):**
+1 - Adicionadas novas variáveis ​​para rastrear a localização x e y do jogador.
+
+**Próximo passo planeado:**
+- Finalize o método de batalha;
+- Adicione um novo elemento ao mapa que permita ao jogador descer um andar;
+
+**Linhas de código escritas (estimativa):**
+Entre 100-117 linhas escritas
